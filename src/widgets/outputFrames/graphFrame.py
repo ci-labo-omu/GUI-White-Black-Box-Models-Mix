@@ -142,19 +142,19 @@ class GraphFrame(ctk.CTkFrame):
         # Plot decision boundary for the first set of labels using `base`
         Z3 = model.predict_base(np.c_[xx.ravel(), yy.ravel()])
         Z3 = Z3.reshape(xx.shape)
-        curve1 = plot2.contour(xx, yy, Z3, levels=len(y_u), linewidths=4, colors='green')
+        curve1 = plot2.contour(xx, yy, Z3, levels=len(y_u), linewidths=4, colors='black')
 
         # Plot decision boundary for the first set of labels using `deferral`
         Z4 = model.predict_deferral(np.c_[xx.ravel(), yy.ravel()])
         Z4 = Z4.reshape(xx.shape)
-        curve2 = plot2.contour(xx, yy, Z4, levels=len(y_u), linewidths=2, colors='violet')
+        curve2 = plot2.contour(xx, yy, Z4, levels=len(y_u), linewidths=2, colors='darkred', linestyles='dashed')
         
         # Plot points of each class
         for i in y_u:
             plot2.scatter(X[:, 0][y == i], X[:, 1][y == i], edgecolor='k', marker='o', label=str(i))
         
-        contour_legend1 = Line2D([0], [0], color='green', lw=4, label='Decision Boundary Base')
-        contour_legend2 = Line2D([0], [0], color='violet', lw=2, label='Decision Boundary Deferral')
+        contour_legend1 = Line2D([0], [0], color='black', lw=4, label='Decision Boundary Base')
+        contour_legend2 = Line2D([0], [0], color='darkred', lw=2, label='Decision Boundary Deferral', linestyle='dashed')
         handles, labels = plot2.get_legend_handles_labels()
         handles.append(contour_legend1)
         handles.append(contour_legend2)
